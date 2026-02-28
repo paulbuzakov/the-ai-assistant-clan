@@ -2,7 +2,9 @@ bin
 obj
 target
 
+tmp
+
 .DS_Store
 
-docker/docker-compose.credentials.yaml
+docker-compose.credentials.yaml
 

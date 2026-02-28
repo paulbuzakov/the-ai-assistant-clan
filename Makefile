@@ -1,12 +1,8 @@
 .PHONY: up build recreate down logs shell
 
-COMPOSE_FILE := docker/docker-compose.yml
-COMPOSE_CREDENTIALS_FILE := docker/docker-compose.credentials.yaml
-
-COMPOSE_FILES := -f $(COMPOSE_FILE)
-ifneq ("$(wildcard $(COMPOSE_CREDENTIALS_FILE))","")
-	COMPOSE_FILES += -f $(COMPOSE_CREDENTIALS_FILE)
-endif
+COMPOSE_BASE := docker-compose.yml
+COMPOSE_EXTRAS := $(sort $(wildcard docker-compose.*.yaml) $(wildcard docker-compose.*.yml))
+COMPOSE_FILES := $(foreach f,$(COMPOSE_BASE) $(COMPOSE_EXTRAS),-f $(f))
 
 COMPOSE := docker compose $(COMPOSE_FILES)
 

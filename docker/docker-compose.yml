@@ -1,9 +1,0 @@
-name: the-ai-assistant-clan
-
-services:
-  telegram:
-    build:
-      context: ..
-      dockerfile: ./docker/external-bridges/telegram/Dockerfile
-    image: telegram:latest
-    container_name: telegram
