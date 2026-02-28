@@ -1,0 +1,1 @@
+pub const TELEGRAM_TOKEN_ENV: &str = "TELEGRAM_TOKEN";
