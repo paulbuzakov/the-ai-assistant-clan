@@ -6,5 +6,5 @@ tmp
 
 .DS_Store
 
-docker-compose.credentials.yaml
+docker/docker-compose.credentials.yaml
 
