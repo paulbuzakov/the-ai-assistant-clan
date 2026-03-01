@@ -8,8 +8,8 @@ Collaborative hub for AI assistants, bots, and tools that work together as modul
 - `src/external-bridges/telegram`: Telegram bridge service in Rust
 - `docker/monitoring`: Grafana Alloy + Loki configuration
 - `docker-compose.yml`: base services
-- `docker-compose.monitoring.yaml`: observability stack
-- `docker-compose.credentials.yaml`: local secrets override (kept out of git)
+- `docker/docker-compose.monitoring.yaml`: observability stack
+- `docker/docker-compose.credentials.yaml`: local secrets override (kept out of git)
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Collaborative hub for AI assistants, bots, and tools that work together as modul
 
 ## Quick start (Docker)
 
-1. Create or update credentials in `docker-compose.credentials.yaml`:
+1. Create or update credentials in `docker/docker-compose.credentials.yaml`:
 
 	```yaml
 	services:
@@ -52,12 +52,12 @@ Collaborative hub for AI assistants, bots, and tools that work together as modul
 
 ## Compose file loading behavior
 
-The `Makefile` auto-loads `docker-compose.yml` plus any `docker-compose.*.yaml` / `docker-compose.*.yml` files in the project root.
+The `Makefile` auto-loads `docker-compose.yml` plus any `docker/docker-compose.*.yaml` / `docker/docker-compose.*.yml` files.
 
 That means:
 
-- monitoring is included automatically via `docker-compose.monitoring.yaml`
-- local secret overrides are included automatically via `docker-compose.credentials.yaml`
+- monitoring is included automatically via `docker/docker-compose.monitoring.yaml`
+- local secret overrides are included automatically via `docker/docker-compose.credentials.yaml`
 
 ## Make targets
 
