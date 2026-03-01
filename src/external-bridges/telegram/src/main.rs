@@ -4,7 +4,10 @@ use crate::consts::TELEGRAM_TOKEN_ENV;
 use shared::logger;
 use shared::settings::Settings;
 
-fn main() {
+use teloxide::prelude::*;
+
+#[tokio::main]
+async fn main() {
     logger::init();
 
     let settings = Settings::from_env().expect("failed to init settings");
@@ -17,8 +20,16 @@ fn main() {
         }
     };
 
-    for i in 1..=1000 {
-        logger::info!("TELEGRAM_TOKEN={} {}", token, i);
-        std::thread::sleep(std::time::Duration::from_secs(5));
-    }
+    logger::info!("Telegram bot is starting...");
+
+    let bot = Bot::new(token);
+
+    teloxide::repl(bot, |bot: Bot, msg: Message| async move {
+        if let Some(text) = msg.text() {
+            logger::info!("Received message: {}", text);
+            bot.send_message(msg.chat.id, format!("Echo: {}", text)).await?;
+        }
+        respond(())
+    })
+    .await;
 }
